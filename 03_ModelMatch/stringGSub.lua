@@ -1,0 +1,7 @@
+s = string.gsub("Luna is pretty" , "pretty", "cute")
+print(s)
+s = string.gsub("all lii", "l", "x")
+print(s)
+s, n = string.gsub("Luna is pretty", "x", "b")
+print(s, n)
+s = string.gsub("all lii", "l", "x", "l")
