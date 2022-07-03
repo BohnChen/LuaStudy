@@ -2,9 +2,28 @@
  * Read data from lua stack
  * BohnChen 2022-06-27 13:31
  */
-#include "lauxlib.h"
+// g++ test.cpp -o test ~/lua-5.1.5/src/liblua.a -lm
+// liblua.a 是一个静态库文件，你可以将其拷贝至 /usr/lib
+// 拷贝之后你执行 g++ test.cpp -o test -llua -lm 就可以
+
+// 这份代码可以在 vs 中用两种方式运行
+//				1. 将源码添加进项目并设置包含外部依赖文件夹为源码所在文件夹
+//				2. 也可以将 lua 代码编译为 lib 文件添加进项然后再进行引用
+
+
+#include "lua.hpp" // #locate lua.hpp  # cat lua.hpp, 内容如下
+/*
+// lua.hpp
+// Lua header files for C++
+// <<extern "C">> not supplied automatically because Lua also compiles as C++
+
+extern "C" {
 #include "lua.h"
 #include "lualib.h"
+#include "lauxlib.h"
+}
+*/
+
 #include <iostream>
 #include <string.h>
 using namespace std;
@@ -14,11 +33,6 @@ using namespace std;
 #define MY_LUASTATEACQUIRE_ERROR -2
 #define MY_LOAD_FILE_ERROR -3
 
-extern "C" {
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-}
 
 int main() {
   // 1. Create Lua state
